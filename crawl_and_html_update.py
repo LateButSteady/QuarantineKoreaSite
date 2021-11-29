@@ -12,8 +12,8 @@ from netlify_py import NetlifyPy
 
 
 sys.path.append("C:\\ProgramData\\Anaconda3\\Lib\\site-packages")
-import MOD_common as cm
-import MOD_http as http
+import pkg_JWK.MOD_common as cm
+import pkg_JWK.MOD_http as http
 
 '''
 To do list
@@ -59,7 +59,7 @@ def main():
     #old_ConfirmedCase = http.crawl_table(url, type, list_ClassName)
     #old_ConfirmedCase = old_ConfirmedCase[0]
     #old_ConfirmedCase = old_ConfirmedCase.replace("전일대비 (+ ", "").replace(")", "")
-    old_ConfirmedCase = http.crawl_address_full(url, tag_address_full, idx, list_del_str)
+    old_ConfirmedCase = int(http.crawl_address_full(url, tag_address_full, idx, list_del_str))
 
 
     # 코드 바꿀 html 경로
@@ -82,8 +82,7 @@ def main():
         try:
             #num_ConfirmedCase = http.crawl(url, type, list_ClassName)
             #df_table = http.crawl_table_to_df(url, "ds_table", 0)
-            num_ConfirmedCase = http.crawl_address_full(url, tag_address_full, idx, list_del_str)
-            num_ConfirmedCase = int(num_ConfirmedCase)
+            num_ConfirmedCase = int(http.crawl_address_full(url, tag_address_full, idx, list_del_str))
             cm.print_and_log('i', logger, f"num_ConfirmedCase: {num_ConfirmedCase}")
             # 전일대비 (+ 1219) => 1219
             #num_ConfirmedCase = num_ConfirmedCase.replace("전일대비 (+ ", "").replace(")", "")
@@ -173,7 +172,9 @@ def main():
 
         old_Day = now_Day
         old_ConfirmedCase = num_ConfirmedCase
-        time.sleep(3600)  # 3시간마다 refresh
+
+        cm.print_and_log('i', logger, f"Sleeping for 1 hour")
+        time.sleep(3600)  # 1시간마다 refresh
 
 
 if __name__ == "__main__":
