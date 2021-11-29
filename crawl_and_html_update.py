@@ -12,8 +12,8 @@ from netlify_py import NetlifyPy
 
 
 sys.path.append("C:\\ProgramData\\Anaconda3\\Lib\\site-packages")
-import pkg_JWK.MOD_common as cm
-import pkg_JWK.MOD_http as http
+import MOD_common as cm
+import MOD_http as http
 
 '''
 To do list
