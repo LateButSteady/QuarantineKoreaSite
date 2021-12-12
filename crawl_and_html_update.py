@@ -108,20 +108,21 @@ def main():
         #     업데이트 끝나면 둘 다 False 만들기
         # 이렇게 하는 이유:
         #   매분 index.html 다시 쓰지 않도록 하기 위함
-        if old_Day != now_Day:
-            flag_Changed_Day = True
-            cm.print_and_log('i', logger, "Day is changed")
-        if old_ConfirmedCase != num_ConfirmedCase:
-            flag_Changed_ConfirmedCase = True
-            cm.print_and_log('i', logger, "The number of Confirmed case is updated")
+        # if old_Day != now_Day:
+        #     flag_Changed_Day = True
+        #     cm.print_and_log('i', logger, "Day is changed")
+        # if old_ConfirmedCase != num_ConfirmedCase:
+        #     flag_Changed_ConfirmedCase = True
+        #     cm.print_and_log('i', logger, "The number of Confirmed case is updated")
 
         # 날짜가 바뀌고, 크롤링 결과가 둘 다 달라지면
-        if flag_Changed_Day and flag_Changed_ConfirmedCase:
+        #if flag_Changed_Day and flag_Changed_ConfirmedCase:
+        if True:
 
             cm.print_and_log('i', logger, f"Updating \"{fname_Html}\"")
 
             # html에서 text 바꿀 내용 설정
-            line_Replace = f'          <h4 class="heading">{now_Year}년 {now_Month}월 {now_Day}일 기준<br>신규 확진자 수: {num_ConfirmedCase}</h4>\n'
+            line_Replace = f'          <h4 class="heading">{now_Year}년 {now_Month}월 {now_Day}일 기준<br>신규 확진자 수: <span style=\"color: firebrick\">{num_ConfirmedCase}</span></h4>\n'
             word_Search = "신규 확진자 수"
 
             # html 파일 로딩
